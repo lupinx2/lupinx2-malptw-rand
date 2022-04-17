@@ -2,6 +2,11 @@ from argparse import ArgumentParser
 import xml.etree.ElementTree as ET
 import random
 
+#TODO:
+#one-click launch
+#Choice between series and movie?
+
+
 if __name__ == '__main__':
     parser = ArgumentParser(description="Pick a random show from your PTW list")
     parser.add_argument("mal_list",
