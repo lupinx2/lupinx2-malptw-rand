@@ -3,14 +3,11 @@ import xml.etree.ElementTree as ET
 import random
 
 #TODO:
-#* one-click launch
-#   Double click .bat file to run
 #
 #* No arguments at runtime
 #   Make it find a .xml file on its own somehow.
-#   Currently uses only lupinx2_MAL.xml specifically
-#   Ask user to name file a specific way?
-#   IDEALLY: the script should offer the coice of every .xml file in the directory
+#   -incorporate the xml file finder in pystest.py
+#   -take the argument out of the bat file
 #
 #* figure out WTF argumentparser is and what it does and to whom it does it
 #
