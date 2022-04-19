@@ -1,6 +1,8 @@
 # malptw-rand
 Randomly selects an anime listing from your MAL plan to watch section.
 
+original code by renelic
+
 ## Requirements
 - Python 3.2+
 
@@ -19,12 +21,16 @@ Then click the following link to download your list. Make sure to extract it int
 
 
 ## Usage
-First clone/download this repo and `cd` into with your terminal of choice. Make sure to follow the steps above and put your XML MAL file in the repo folder. Then type:
+First clone/download this repo and make sure to follow the steps above and put your XML MAL file in same folder as `malptw_rand.py`.
 
-`python malptw_rand.py your_anime_list.xml`
+If you're on Windows, you can just double-click the `run-malptw_rand.bat` file.
+
+If you are not on a Windows machine, or would prefer to use a terminal just `cd` into the repo folder. Then type:
+
+`python malptw_rand.py`
 
 or
 
-`python3 malptw_rand.py your_anime_list.xml`
+`python3 malptw_rand.py`
 
 to get a random anime from your PTW list.
