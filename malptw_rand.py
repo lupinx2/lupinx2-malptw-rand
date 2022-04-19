@@ -1,39 +1,41 @@
 from argparse import ArgumentParser
 import xml.etree.ElementTree as ET
 import random
+import glob
 
-#TODO:
+# TODO:
 #
-#* No arguments at runtime
-#   Make it find a .xml file on its own somehow.
-#   -incorporate the xml file finder in pystest.py
-#   -take the argument out of the bat file
+# * Choice between series and movie?
 #
-#* figure out WTF argumentparser is and what it does and to whom it does it
-#
-#* Choice between series and movie?
+# DONE:
+# * launch by clicking bat file
+# * no parameters needed
+# * finds all xml files and asks
 #
 
+if __name__ == '__main__':  # huh?
 
-if __name__ == '__main__': #huh?
-    parser = ArgumentParser(description="Pick a random show from your PTW list")
-    #ArgumentParser declared
-    parser.add_argument("mal_list",#with the xml file as a parameter, parser 
-                        metavar="LIST",#saves it as mal_list
-                        type=str,
-                        help="The exported XML from your MAL page.")
+    ListOfXML = (glob.glob('*.xml'))
+    print('Select an xml file:')
+    i = int(0)
+    for each in ListOfXML:
+        print(i, ':', ListOfXML[i])
+        i = (i+1)
+    choice = int(input())
+    selectedMALfile = ListOfXML[choice]
+    print(selectedMALfile, ' selected.\n')
+    #print ('Exclude movies? [Y/N]\n')
 
-    args = parser.parse_args()#I guess args.mal_list is the xml file?
-    list_tree = ET.parse(args.mal_list)
+    list_tree = ET.parse(selectedMALfile) 
     tree_root = list_tree.getroot()
 
     ptw_list = list()
-    for anime in tree_root.findall("anime"):#from each <anime> in the xml
-        if anime.find("my_status").text == "Plan to Watch":#if my_status = PTW
-            ptw_list.append(anime.find("series_title").text)#add it to ptw_list as its series_title
-
+    for anime in tree_root.findall("anime"):  # from each <anime> in the xml
+        if anime.find("my_status").text == "Plan to Watch":  # if my_status = PTW
+            # add it to ptw_list as its series_title
+            ptw_list.append(anime.find("series_title").text)
     opts = ["y", "n"]
-    while True:#Prompt user
+    while True:  # Prompt user
         user_in = input("Get random anime? [Y/N]: ").lower().rstrip()
         if user_in not in opts:
             print("Invalid input!\n")
@@ -41,5 +43,6 @@ if __name__ == '__main__': #huh?
         elif user_in == "n":
             break
 
-        rand_index = random.randint(0, len(ptw_list))#pick a random anime from ptw_list
+        # pick a random anime from ptw_list
+        rand_index = random.randint(0, len(ptw_list))
         print("Your random anime is: {}\n".format(ptw_list[rand_index]))

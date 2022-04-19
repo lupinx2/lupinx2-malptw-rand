@@ -1,3 +1,3 @@
 ECHO ON
-python malptw_rand.py lupinx2_MAL.xml
+python malptw_rand.py
 PAUSE
