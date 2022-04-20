@@ -18,18 +18,18 @@ if __name__ == '__main__':
         print(i, ':', ListOfXML[i])
         i = (i+1)
 
-    #prompts user to pick an xml file
+    # prompts user to pick an xml file
     choice = input()
     try:
         choice = int(choice)
     except ValueError:
-        print("Invalid input!\n")    
+        print("Invalid input!\n")
     selectedMALfile = ListOfXML[choice]
     print(selectedMALfile, ' selected.\n')
     list_tree = ET.parse(selectedMALfile)
     tree_root = list_tree.getroot()
 
-    #prompts user to excludde movies or series
+    # prompts user to excludde movies or series
     opts = ["y", "n"]
     while True:
         no_movies = input("Exclude movies? [Y/N]: ").lower().rstrip()
@@ -38,13 +38,13 @@ if __name__ == '__main__':
             continue
         else:
             if no_movies == "n":
-                only_movies = input(" Only movies? [Y/N]: ").lower().rstrip()
+                only_movies = input("Only movies? [Y/N]: ").lower().rstrip()
                 if only_movies not in opts:
                     print("Invalid input!\n")
                     continue
                 else:
                     break
-            else:  #if no_movies = Y
+            else:  # if no_movies = Y
                 only_movies = "n"
                 break
 
@@ -52,19 +52,20 @@ if __name__ == '__main__':
     for anime in tree_root.findall("anime"):  # from each <anime> in the xml
         if anime.find("my_status").text == "Plan to Watch":  # with my_status = PTW
             # append to ptw_list list as a string equal to the series_title
-            ptw_list.append(anime.find("series_title").text + " [" + anime.find("series_type").text + "]")            
+            ptw_list.append(anime.find("series_title").text +
+                            " [" + anime.find("series_type").text + "]")
             if (anime.find("series_type").text == "Movie") and (no_movies == "y"):
                 ptw_list.pop()
             if (anime.find("series_type").text != "Movie") and (only_movies == "y"):
                 ptw_list.pop()
 
-    #prompt user to pick a random anime from ptw_list
+    # prompt user to pick a random anime from ptw_list
     while True:
-            user_in = input("Get random anime? [Y/n]: ").lower().rstrip()
-            if user_in not in opts:
-                print("Invalid input!\n")
-                continue
-            elif user_in == "n":
-                break        
-            rand_index = random.randint(0, len(ptw_list))
-            print("Your random anime is: {}\n".format(ptw_list[rand_index]))
+        user_in = input("Get random anime? [Y/n]: ").lower().rstrip()
+        if user_in not in opts:
+            print("Invalid input!\n")
+            continue
+        elif user_in == "n":
+            break
+        rand_index = random.randint(0, len(ptw_list))
+        print("Your random anime is: {}\n".format(ptw_list[rand_index]))
