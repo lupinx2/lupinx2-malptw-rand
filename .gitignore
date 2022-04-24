@@ -16,6 +16,9 @@ pip-selfcheck.json
 # Any xml files
 *.xml
 
+#DEBUG python file
+DEBUG malptw_rand.py
+
 ### Python VSC template
 # Byte-compiled / optimized / DLL files
 __pycache__/
