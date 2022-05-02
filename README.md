@@ -3,11 +3,13 @@ Randomly selects an anime listing from your MAL plan to watch section.
 
 Original code by renelic
 
-I've made the following changes:
+I've made these changes:
 
 * added a bat file for easier launching on Windows.
 
-* it prompts the user to pick an xml file from the current directory instead of needing one as an argumennt.
+* prompts the user to pick an xml file from the current directory instead of needing it as an argumennt.
+
+* "Exclude movies" and "Only movies" options
 
 
 ## Requirements
@@ -32,7 +34,7 @@ First clone/download this repo and make sure to follow the steps above and put y
 
 If you're on Windows, you can just double-click the `run-malptw_rand.bat` file.
 
-If you are not on a Windows machine, or would prefer to use a terminal just `cd` into the repo folder. Then type:
+If you're not on Windows, or would prefer to use a terminal just `cd` into the repo folder. Then type:
 
 `python malptw_rand.py`
 
