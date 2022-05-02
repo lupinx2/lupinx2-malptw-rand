@@ -5,8 +5,9 @@ import random
 import glob
 
 #TODO
-#link to MAL page
+#link to MAL page(?)
 #handle missing xml file
+
 if __name__ == '__main__':
     # returns a List with every .xml file in the working directory.
     ListOfXML = (glob.glob('*.xml'))
@@ -47,15 +48,19 @@ if __name__ == '__main__':
                 break
 
     ptw_list = list()
+    ptw_list_id = list()
     for anime in tree_root.findall("anime"):  # from each <anime> in the xml (cont.)
         if anime.find("my_status").text == "Plan to Watch":  # with my_status = PTW (cont.)
-            # append to ptw_list list as a string equal to the series_title.
+            # append to ptw_list list as a string equal to the series_title value.
             ptw_list.append(anime.find("series_title").text +
-                            " [" + anime.find("series_type").text + "]")
+                            " [" + anime.find("series_type").text + "]")# also include its series_type
+            ptw_list_id.append(anime.find("series_animedb_id").text)# and append its series_animedb_id value to ptw_list_id 
             if (anime.find("series_type").text == "Movie") and (no_movies == "y"):
                 ptw_list.pop()
+                ptw_list_id.pop()
             if (anime.find("series_type").text != "Movie") and (only_movies == "y"):
                 ptw_list.pop()
+                ptw_list_id.pop()
 
     # prompt user to pick a random anime from ptw_list.
     while True:
@@ -66,4 +71,5 @@ if __name__ == '__main__':
         elif user_in == "n":
             break                
         rand_index = random.randint(0, len(ptw_list)-1)        
-        print("Your random anime is: {}\n".format(ptw_list[rand_index]))
+        print("Your random anime is: {}".format(ptw_list[rand_index]))
+        print('https://myanimelist.net/anime/' + (ptw_list_id[rand_index]) + "/\n")        
