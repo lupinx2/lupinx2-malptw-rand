@@ -1,11 +1,11 @@
 # malptw-rand
 Randomly selects an anime listing from your MAL plan to watch section.
 
-Original code by renelic
+Original code by renellc
 
 I've made these changes:
 
-* added a bat file for easier launching on Windows.
+* added a bat file for easy launching on Windows.
 
 * prompts the user to pick an xml file from the current directory instead of needing it as an argumennt.
 
